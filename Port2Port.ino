@@ -41,12 +41,13 @@ String parsed = mySerial.read();
 String parsed2;  
 for(int i=0; i<parsed.length; i++){
   parsed2 = substring(i,i+1);
-  sum+=ascii
+  sum+=parsed2.toInt();
 }
 
-//mySerial.write(token + "" + _____);
+if(mySerial.available() > 0){
+  mySerial.write(token + "" + sum);
 }
 
-
+}
 
 */

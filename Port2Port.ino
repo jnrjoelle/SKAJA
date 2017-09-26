@@ -18,7 +18,7 @@ void loop() { // run over and over
       mySerial.write(&token);
     }
   }
-  else {
+  else {//if token is filled with information check for data
     int begdest = token.indexOf("/");
     int enddest = token.indexOf("-");//seperates the destination from the rest of the string
     if (token.substring(begdest + 1, enddest).equals(myaddress)) {//if my address is the one being sent to accept message

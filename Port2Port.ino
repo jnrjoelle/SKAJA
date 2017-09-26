@@ -30,3 +30,23 @@ void loop() { // run over and over
     }
   }
 }
+
+
+
+
+/* ACK 
+void received(){
+int sum=0;
+String parsed = mySerial.read(); 
+String parsed2;  
+for(int i=0; i<parsed.length; i++){
+  parsed2 = substring(i,i+1);
+  sum+=ascii
+}
+
+//mySerial.write(token + "" + _____);
+}
+
+
+
+*/

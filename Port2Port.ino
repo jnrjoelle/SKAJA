@@ -3,7 +3,7 @@
 SoftwareSerial mySerial(7, 4); // RX, TX
 
 String myaddress = "A11";
-String token = '$';
+String token = "$";
 
 void setup() {
   // Open serial communications and wait for port to open:
@@ -12,9 +12,9 @@ void setup() {
 }
 
 void loop() { // run over and over
-  if (token.equals('$')) {//token empty fill token
+  if (token.equals("$")) {//token empty fill token
     if (Serial.available() > 0) {
-      token += Serial.read();
+      token = token + myaddress + "/" + Serial.read();
       mySerial.write(&token);
     }
   }

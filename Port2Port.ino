@@ -19,8 +19,8 @@ void loop() { // run over and over
     }
   }
   else {
-    int begdest = token.indexOf("-");
-    int enddest = token.indexOf("/");//seperates the destination from the rest of the string
+    int begdest = token.indexOf("/");
+    int enddest = token.indexOf("-");//seperates the destination from the rest of the string
     if (token.substring(begdest + 1, enddest).equals(myaddress)) {//if my address is the one being sent to accept message
       if (mySerial.available() > 0) {
         Serial.write(mySerial.read());

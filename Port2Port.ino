@@ -42,7 +42,7 @@ for(int i=0; i<parsed.length; i++){
 }
 
 if(mySerial.available() > 0){
-  mySerial.write(token + "" + sum);
+  mySerial.write(sum + "destination");
 }
 
 }

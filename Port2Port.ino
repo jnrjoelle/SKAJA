@@ -24,6 +24,7 @@ void loop() { // run over and over
     if (token.substring(begdest + 1, enddest).equals(myaddress)) {//if my address is the one being sent to accept message
       if (mySerial.available() > 0) {
         Serial.write(mySerial.read());
+        received();
       }
     } else {//if it is not my address
       mySerial.write(&token);//pass token along
@@ -31,10 +32,6 @@ void loop() { // run over and over
   }
 }
 
-
-
-
-/* ACK 
 void received(){
 int sum=0;
 String parsed = mySerial.read(); 
@@ -50,4 +47,4 @@ if(mySerial.available() > 0){
 
 }
 
-*/
+

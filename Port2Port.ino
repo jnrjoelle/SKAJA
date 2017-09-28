@@ -33,17 +33,17 @@ void loop() { // run over and over
 }
 
 void received(){
-int sum=0;
-String parsed = mySerial.read(); 
-String parsed2;  
-for(int i=0; i<parsed.length; i++){
-  parsed2 = substring(i,i+1);
-  sum+=parsed2.toInt();
-}
+  int sum=0;
+  String parsed = mySerial.read(); 
+  String parsed2;  
+  for(int i=0; i<parsed.length; i++){
+    parsed2 = substring(i,i+1);
+    sum+=parsed2.toInt();
+  }
 
-if(mySerial.available() > 0){
-  mySerial.write(sum + "destination");
-}
+  if(mySerial.available() > 0){
+    mySerial.write(sum + "destination");
+  }
 
 }
 

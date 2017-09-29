@@ -43,9 +43,14 @@ void received(){
     parsed2 = substring(i,i+1);
     sum+=parsed2.toInt();
   }
+  
+  String src = parsed.substring(0,parsed.indexOf("/"));
+  String dest = src;
+  src = myaddress;
 
   if(mySerial.available() > 0){
-    mySerial.write(sum + "destination");
+    token = "$"+src+"/"+dest+"-"+(string)sum+"_";
+    mySerial.write(&token);
   }
 
 }

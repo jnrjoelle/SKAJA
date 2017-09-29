@@ -30,7 +30,7 @@ void loop() { // run over and over
       mySerial.write(&token);//pass token along
     }
     if (token.substring(token.indexOf("+")+1, begdest).equals(myaddress)) {
-      Serial.write("Error");
+      Serial.write("Error: non-existent Arduino!");
     }
   }
 }

@@ -14,7 +14,7 @@ void setup() {
 void loop() { // run over and over
   if (token.equals("$")) {//token empty fill token
     if (Serial.available() > 0) {
-      token = token + myaddress + "/" + Serial.read() + "_";
+      token = token + myaddress+ "+" + myaddress + "/" + Serial.read() + "_";
       mySerial.write(&token);
     }
   }

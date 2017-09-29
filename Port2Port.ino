@@ -29,6 +29,9 @@ void loop() { // run over and over
     } else {//if it is not my address
       mySerial.write(&token);//pass token along
     }
+    if (token.substring(begdest + 1, enddest).equals("A11")) {
+      Serial.write("Error");
+    }
   }
 }
 

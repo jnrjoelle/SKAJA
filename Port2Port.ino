@@ -14,7 +14,7 @@ void setup() {
 void loop() { // run over and over
   if (token.equals("$")) {//token empty fill token
     if (Serial.available() > 0) {
-      token = token + myaddress+ "+" + myaddress + "/" + Serial.read() + "_";//first myaddress= original source
+      token = token + "+"+ myaddress + "/" + Serial.read() + "_"; //first myaddress= original source
       mySerial.write(&token);
     }
   }
@@ -29,7 +29,7 @@ void loop() { // run over and over
     } else {//if it is not my address
       mySerial.write(&token);//pass token along
     }
-    if (token.substring(token.indexOf("$")+1, token.indexOf("+")).equals(myaddress)) {
+    if (token.substring(token.indexOf("+")+1, begdest).equals(myaddress)) {
       Serial.write("Error");
     }
   }

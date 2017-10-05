@@ -28,7 +28,7 @@ void loop() { // run over and over
       String Message = token.substring(enddest + 1, token.indexOf("_"));
       Serial.print(Message);
       received();
-    } else if (token.substring(token.indexOf("$")+1,token.indexOf(endsrc)) {//if my address is the source
+    } else if (token.substring(token.indexOf("$")+1,token.indexOf(endsrc))) {//if my address is the source
       Serial.write("Error");
     } else {//if it is not my address
       mySerial.write(&token);//pass token along

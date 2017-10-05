@@ -24,11 +24,11 @@ void loop() { // run over and over
   else {//token full read
     int endsrc = token.indexOf("/");
     int enddest = token.indexOf("-");//separates the destination from the rest of the string
-    if (token.substring(endsrc + 1, enddest).equals(myaddress)) {//if my address is the destination
+    if (token.substring(endsrc + 1, enddest).equals(myaddress) || token.substring(endsrc + 1, enddest).equals("A0")) {//if my address is the destination
       String Message = token.substring(enddest + 1, token.indexOf("_"));
       Serial.print(Message);
-      received();
-    } else if (token.substring(token.indexOf("$")+1,token.indexOf(endsrc))) {//if my address is the source
+      received(token);
+    } else if (token.substring(token.indexOf("$") + 1, token.indexOf(endsrc))) { //if my address is the source
       Serial.write("Error");
     } else {//if it is not my address
       mySerial.write(&token);//pass token along
@@ -36,24 +36,21 @@ void loop() { // run over and over
   }
 }
 
-void received(){
-  int sum=0;
-  String parsed = mySerial.read(); 
-  String parsed2;  
-  for(int i=0; i<parsed.length; i++){
-    parsed2 = substring(i,i+1);
-    sum+=parsed2.toInt();
+void received(String parsed) {
+  int sum = 0;
+  String parsed2;
+  for (int i = 0; i < parsed.length(); i++) {
+    parsed2 = parsed.substring(i, i + 1);
+    sum += parsed2.toInt();
   }
-  
-  String src = parsed.substring(0,parsed.indexOf("/"));
+
+  String src = parsed.substring(0, parsed.indexOf("/"));
   String dest = src;
   src = myaddress;
 
-  if(mySerial.available() > 0){
-    token = "$"+src+"/"+dest+"-"+(string)sum+"_";
+  if (mySerial.available() > 0) {
+    token = "$" + src + "/" + dest + "-" + String(sum) + "_";
     mySerial.write(&token);
   }
 
 }
-
-

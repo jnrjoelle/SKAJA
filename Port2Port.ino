@@ -24,12 +24,19 @@ void loop() { // run over and over
   else {//token full read
     int endsrc = token.indexOf("/");
     int enddest = token.indexOf("-");//separates the destination from the rest of the string
-    if (token.substring(endsrc + 1, enddest).equals(myaddress) || token.substring(endsrc + 1, enddest).equals("A0")) {//if my address is the destination
-      String Message = token.substring(enddest + 1, token.indexOf("_"));
+    String Message = token.substring(enddest + 1, token.indexOf("_"));//seperates the message from the token
+    if (token.substring(endsrc + 1, enddest).equals(myaddress)) {//if my address is the destination
       Serial.print(Message);
       received(token);
-    } else if (token.substring(token.indexOf("$") + 1, token.indexOf(endsrc))) { //if my address is the source
+    } else if (token.substring(token.indexOf("$") + 1, token.indexOf(endsrc)).equals(myaddress)) { //if my address is the source
       Serial.write("Error");
+    } else if (token.substring(endsrc + 1, enddest).equals("A0")) {
+      if (token.substring(token.indexOf("$") + 1, token.indexOf(endsrc)).equals(myaddress)) {
+        token = "$";
+      } else {
+        Serial.print(Message);
+        received(token);
+      }
     } else {//if it is not my address
       mySerial.write(&token);//pass token along
     }

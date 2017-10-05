@@ -12,25 +12,25 @@ void setup() {
 }
 
 void loop() { // run over and over
+  if (mySerial.available() > 0) {
+    token = mySerial.read();
+  }
   if (token.equals("$")) {//token empty fill token
     if (Serial.available() > 0) {
-      token = token + "+" + myaddress + "/" + Serial.read() + "_"; 
+      token = token + myaddress + "/" + Serial.read() + "_";
       mySerial.write(&token);
     }
   }
-  else {//if token is filled with information, check for data
-    int begdest = token.indexOf("/");
-    int enddest = token.indexOf("-");//separates the destination from the rest of the string
-    if (token.substring(begdest + 1, enddest).equals(myaddress)) {//if my address is the one being sent to accept message
-      if (mySerial.available() > 0) {
-        Serial.write(mySerial.read());
-        received();
-      }
+  else {//token full read
+    int endsrc = token.indexOf("/");
+    int enddest = token.indexOf("-");//seperates the destination from the rest of the string
+    if (token.substring(endsrc + 1, enddest).equals(myaddress)) {//if my address is the destination 
+      Serial.write(mySerial.read());
+      received();
+    } else if (token.substring(token.indexOf("$")+1,token.indexOf(endsrc)) {//if my address is the source
+      Serial.write("Error");
     } else {//if it is not my address
       mySerial.write(&token);//pass token along
-    }
-    if (token.substring(token.indexOf("+")+1, begdest).equals(myaddress)) {
-      Serial.write("Error: non-existent Arduino!");
     }
   }
 }

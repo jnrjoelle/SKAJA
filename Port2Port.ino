@@ -28,6 +28,7 @@ void loop() { // run over and over
     if (token.substring(endsrc + 1, enddest).equals(myaddress)) {//if my address is the destination
       Serial.print(Message);
       received(token);
+      token = "$";
     } else if (token.substring(token.indexOf("$") + 1, token.indexOf(endsrc)).equals(myaddress)) { //if my address is the source
       Serial.write("Error");
     } else if (token.substring(endsrc + 1, enddest).equals("A0")) {

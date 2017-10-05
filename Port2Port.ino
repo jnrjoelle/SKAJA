@@ -23,7 +23,7 @@ void loop() { // run over and over
   }
   else {//token full read
     int endsrc = token.indexOf("/");
-    int enddest = token.indexOf("-");//seperates the destination from the rest of the string
+    int enddest = token.indexOf("-");//separates the destination from the rest of the string
     if (token.substring(endsrc + 1, enddest).equals(myaddress)) {//if my address is the destination 
       Serial.write(mySerial.read());
       received();
